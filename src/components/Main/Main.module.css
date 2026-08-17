@@ -1,0 +1,31 @@
+.main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 32px;
+  text-align: left;
+}
+
+.titulo {
+  font-size: 32px;
+  margin: 0 0 12px;
+}
+
+.descripcion {
+  margin: 0 0 32px;
+  color: #4b5563;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  padding: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
