@@ -1,34 +1,56 @@
-import Saludo from './components/Saludo';
-import TarjetaPerfil from './components/TarjetaPerfil';
-import Contador from './components/Contador';
-import ListaTareas from './components/ListaTareas';
-
-const usuario1 = {
-  nombre: 'Ada Lovelace',
-  rol: 'Pionera de la Programación',
-  foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Ada_Lovelace_portrait.jpg/250px-Ada_Lovelace_portrait.jpg?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=thumbnail',
-};
+import { useState } from 'react';
+import { comisiones as comisionesIniciales } from './datos';
+import Encabezado from './componentes/Encabezado';
+import Filtros from './componentes/Filtros';
+import ListaComisiones from './componentes/ListaComisiones';
+import SinResultados from './componentes/SinResultados';
+import './App.css';
 
 function App() {
+  const [comisiones, setComisiones] = useState(comisionesIniciales);
+  const [turnoActivo, setTurnoActivo] = useState('todos');
+  const [busqueda, setBusqueda] = useState('');
+
+  function inscribir(id) {
+    setComisiones(
+      comisiones.map((comision) =>
+        comision.id === id
+          ? { ...comision, inscriptos: comision.inscriptos + 1 }
+          : comision
+      )
+    );
+  }
+
+  const texto = busqueda.trim().toLowerCase();
+
+  const comisionesFiltradas = comisiones
+    .filter((comision) => turnoActivo === 'todos' || comision.turno === turnoActivo)
+    .filter((comision) => comision.nombre.toLowerCase().includes(texto));
+
+  const totalDisponibles = comisiones.filter(
+    (comision) => comision.inscriptos < comision.cupo
+  ).length;
+
   return (
-    <div>
-      <Saludo nombre="Valentina" />
-      <Saludo nombre="Tomás" />
-
-      <TarjetaPerfil
-        nombre={usuario1.nombre}
-        cargo={usuario1.rol}
-        imagen={usuario1.foto}
+    <div className="app">
+      <Encabezado
+        titulo="Cartelera de comisiones"
+        totalComisiones={comisiones.length}
+        totalDisponibles={totalDisponibles}
       />
 
-      <TarjetaPerfil
-        nombre="Grace Hopper"
-        cargo="Inventora del compilador"
-        imagen="https://mujeresconciencia.com/app/uploads/2020/01/800px-Commodore_Grace_M._Hopper_USN_covered_head_and_shoulders_crop-768x1021.jpg"
+      <Filtros
+        turnoActivo={turnoActivo}
+        onCambiarTurno={setTurnoActivo}
+        busqueda={busqueda}
+        onBuscar={setBusqueda}
       />
 
-      <Contador />
-      <ListaTareas />
+      {comisionesFiltradas.length > 0 ? (
+        <ListaComisiones comisiones={comisionesFiltradas} onInscribir={inscribir} />
+      ) : (
+        <SinResultados />
+      )}
     </div>
   );
 }
