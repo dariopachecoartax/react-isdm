@@ -9,7 +9,7 @@ Alumno: Dario Pacheco
 Login y registro con React Hook Form, sesión de Supabase en un `AuthContext`, y
 `/comisiones` y `/notas` protegidas con `RutaPrivada`.
 
-- Deployment: _(pendiente)_
+- Deployment: https://react-isdm.vercel.app/
 - SQL de la tabla y las políticas: `supabase/notas.sql`
 - Variables necesarias: ver `.env.example`
 
