@@ -159,3 +159,163 @@
     color: #fbbf24;
   }
 }
+
+.navegacion {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.enlaces,
+.usuario {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.navegacion a {
+  color: var(--accent);
+}
+
+.usuario span {
+  font-size: 15px;
+}
+
+.usuario button {
+  font: inherit;
+  font-size: 15px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 360px;
+  margin: 48px auto;
+  text-align: left;
+}
+
+.formulario h2 {
+  margin-bottom: 8px;
+}
+
+.formulario label {
+  font-size: 15px;
+  color: var(--text-h);
+}
+
+.formulario input {
+  font: inherit;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.formulario button {
+  font: inherit;
+  font-size: 16px;
+  margin-top: 12px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.formulario button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error {
+  font-size: 14px;
+  color: #b91c1c;
+}
+
+.ayuda {
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.notas {
+  text-align: left;
+}
+
+.form-nota {
+  display: flex;
+  gap: 8px;
+  margin: 24px 0;
+}
+
+.form-nota input {
+  font: inherit;
+  font-size: 16px;
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.form-nota button {
+  font: inherit;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.lista-notas {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lista-notas li {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.lista-notas button {
+  font: inherit;
+  font-size: 14px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  .error {
+    color: #f87171;
+  }
+}

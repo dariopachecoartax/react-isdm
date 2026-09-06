@@ -1,56 +1,40 @@
-import { useState } from 'react';
-import { comisiones as comisionesIniciales } from './datos';
-import Encabezado from './componentes/Encabezado';
-import Filtros from './componentes/Filtros';
-import ListaComisiones from './componentes/ListaComisiones';
-import SinResultados from './componentes/SinResultados';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Navegacion from './componentes/Navegacion';
+import LoginForm from './componentes/LoginForm';
+import RegisterForm from './componentes/RegisterForm';
+import RutaPrivada from './componentes/RutaPrivada';
+import Comisiones from './paginas/Comisiones';
+import Notas from './paginas/Notas';
 import './App.css';
 
 function App() {
-  const [comisiones, setComisiones] = useState(comisionesIniciales);
-  const [turnoActivo, setTurnoActivo] = useState('todos');
-  const [busqueda, setBusqueda] = useState('');
-
-  function inscribir(id) {
-    setComisiones(
-      comisiones.map((comision) =>
-        comision.id === id
-          ? { ...comision, inscriptos: comision.inscriptos + 1 }
-          : comision
-      )
-    );
-  }
-
-  const texto = busqueda.trim().toLowerCase();
-
-  const comisionesFiltradas = comisiones
-    .filter((comision) => turnoActivo === 'todos' || comision.turno === turnoActivo)
-    .filter((comision) => comision.nombre.toLowerCase().includes(texto));
-
-  const totalDisponibles = comisiones.filter(
-    (comision) => comision.inscriptos < comision.cupo
-  ).length;
-
   return (
     <div className="app">
-      <Encabezado
-        titulo="Cartelera de comisiones"
-        totalComisiones={comisiones.length}
-        totalDisponibles={totalDisponibles}
-      />
+      <Navegacion />
 
-      <Filtros
-        turnoActivo={turnoActivo}
-        onCambiarTurno={setTurnoActivo}
-        busqueda={busqueda}
-        onBuscar={setBusqueda}
-      />
+      <Routes>
+        <Route path="/" element={<Navigate to="/comisiones" replace />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/registro" element={<RegisterForm />} />
 
-      {comisionesFiltradas.length > 0 ? (
-        <ListaComisiones comisiones={comisionesFiltradas} onInscribir={inscribir} />
-      ) : (
-        <SinResultados />
-      )}
+        <Route
+          path="/comisiones"
+          element={
+            <RutaPrivada>
+              <Comisiones />
+            </RutaPrivada>
+          }
+        />
+
+        <Route
+          path="/notas"
+          element={
+            <RutaPrivada>
+              <Notas />
+            </RutaPrivada>
+          }
+        />
+      </Routes>
     </div>
   );
 }
