@@ -319,3 +319,79 @@
     color: #f87171;
   }
 }
+
+.publicaciones {
+  text-align: left;
+}
+
+.formulario-publicacion {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.formulario-publicacion label {
+  font-size: 15px;
+  color: var(--text-h);
+}
+
+.formulario-publicacion input,
+.formulario-publicacion textarea {
+  font: inherit;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+  resize: vertical;
+}
+
+.acciones {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.acciones button {
+  font: inherit;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.acciones button[type='submit'] {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.acciones button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.lista-publicaciones {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lista-publicaciones li {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.fecha {
+  font-size: 14px;
+  margin-top: 8px;
+}

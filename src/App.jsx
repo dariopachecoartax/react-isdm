@@ -5,6 +5,7 @@ import RegisterForm from './componentes/RegisterForm';
 import RutaPrivada from './componentes/RutaPrivada';
 import Comisiones from './paginas/Comisiones';
 import Notas from './paginas/Notas';
+import Publicaciones from './paginas/Publicaciones';
 import './App.css';
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
       <Navegacion />
 
       <Routes>
-        <Route path="/" element={<Navigate to="/comisiones" replace />} />
+        <Route path="/" element={<Navigate to="/publicaciones" replace />} />
+        <Route path="/publicaciones" element={<Publicaciones />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/registro" element={<RegisterForm />} />
 

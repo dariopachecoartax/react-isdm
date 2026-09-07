@@ -11,18 +11,28 @@ function Navegacion() {
     navigate('/login');
   }
 
-  if (!sesion) return null;
-
   return (
     <nav className="navegacion">
       <div className="enlaces">
-        <Link to="/comisiones">Comisiones</Link>
-        <Link to="/notas">Mis notas</Link>
+        <Link to="/publicaciones">Publicaciones</Link>
+
+        {sesion && (
+          <>
+            <Link to="/comisiones">Comisiones</Link>
+            <Link to="/notas">Mis notas</Link>
+          </>
+        )}
       </div>
 
       <div className="usuario">
-        <span>{sesion.user.email}</span>
-        <button onClick={salir}>Salir</button>
+        {sesion ? (
+          <>
+            <span>{sesion.user.email}</span>
+            <button onClick={salir}>Salir</button>
+          </>
+        ) : (
+          <Link to="/login">Entrar</Link>
+        )}
       </div>
     </nav>
   );
