@@ -4,20 +4,11 @@ Este repositorio se usará como lugar de prácticas realizadas durante el cursad
 
 Alumno: Dario Pacheco
 
-## Actividad en Clase N.º 4 — Login, rutas protegidas y despliegue
+## Trabajo Práctico N.º 4 — Ruteo y lectura desde Supabase
 
-Login y registro con React Hook Form, sesión de Supabase en un `AuthContext`, y
-`/comisiones` y `/notas` protegidas con `RutaPrivada`.
+Catálogo de cursos con cuatro rutas (`/`, `/cursos`, `/cursos/:id` y 404), barra de
+navegación con `NavLink` visible en todas las pantallas, y los datos leídos de la tabla
+`cursos` de Supabase. La aplicación solo lee.
 
-- Deployment: https://react-isdm.vercel.app/
-- SQL de la tabla y las políticas: `supabase/notas.sql`
+- SQL de la tabla, los seis cursos y la política de lectura: `supabase/cursos.sql`
 - Variables necesarias: ver `.env.example`
-
-### Política de RLS elegida para `notas`
-
-Elegí las cuatro políticas por operación (`select`, `insert`, `update`, `delete`) contra
-`authenticated`, todas comparando `auth.uid() = user_id`, en lugar de una sola política
-`for all`. Separarlas deja explícito qué puede hacer cada usuario en cada operación y
-permite cambiar una sin tocar las otras. En `insert` la condición va en `with check`
-porque la fila todavía no existe, y `user_id` nunca se manda desde el cliente: lo completa
-el `default auth.uid()` de la tabla.
